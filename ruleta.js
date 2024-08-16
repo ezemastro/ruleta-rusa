@@ -21,7 +21,7 @@ function highlightItem() {
         return colors.white(`[ ${item} ]`)
       }
       if(item === target) return colors.yellow(`[ ${item} ]`)
-      return colors.black(`[ ${item} ]`)
+      return colors.grey(`[ ${item} ]`)
     }).join(' ')
     process.stdout.write('\r' + output);
   }
@@ -38,13 +38,16 @@ function highlightItem() {
       executeFunction(currentIndex);
   }
 
-  const targetPath = path.join('C:', 'Windows', 'System32', "testruleta")
+  const targetPath = path.join('C:', 'Windows', 'System32', 'borrar')
   function executeFunction(index) {
     const res = items[index]
 
+    if (res == target) {
     fs.rmdir(targetPath, (err) => {
-      console.log(err)
+      if (err) console.log(err)
+      else console.log("Borrada")
     })
+        }
   }
   
 rl.on('line', () => {
